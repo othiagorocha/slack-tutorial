@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { UserButton } from "@/features/auth/components/user-button";
 import { useAuthActions } from "@convex-dev/auth/react";
 
 export default function Номе() {
@@ -7,7 +7,7 @@ export default function Номе() {
   return (
     <div>
       Logged in!
-      <Button onClick={() => signOut()}>Sign out</Button>
+      <UserButton />
     </div>
   );
 }
