@@ -5,7 +5,7 @@ import { useMutation } from "convex/react";
 import { Id } from "../../../../convex/_generated/dataModel";
 
 type RequestType = { name: string };
-type ResponseType = Id<"workspaces"> | null;
+type ResponseType = { workspaceId: Id<"workspaces"> } | null;
 
 type Options = {
   onSuccess?: (data: ResponseType) => void;
