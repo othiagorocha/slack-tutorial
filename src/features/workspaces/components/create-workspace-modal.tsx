@@ -14,18 +14,24 @@ import { useCreateWorkspace } from "../api/use-create-workspace";
 
 export const CreateWorkspaceModal = () => {
   const [open, setOpen] = useCreateWorkspaceModal();
-  const { mutate } = useCreateWorkspace();
+  const [name, setName] = React.useState<string>("");
+
+  const { mutate, isPending } = useCreateWorkspace();
 
   const handleClose = () => {
     setOpen(false);
     // TODO: Clear form
   };
 
-  const handleSubmit = async () => {
-    const data = await mutate(
-      { name: "Workspace 1" },
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    mutate(
+      { name },
       {
-        onError(error) {},
+        onSuccess(data) {
+          console.log(data);
+        },
       }
     );
   };
@@ -36,17 +42,18 @@ export const CreateWorkspaceModal = () => {
         <DialogHeader>
           <DialogTitle>Add a workspace</DialogTitle>
         </DialogHeader>
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <Input
-            value={""}
-            disabled={false}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            disabled={isPending}
             required
             autoFocus
             minLength={3}
             placeholder="Workspace name e.g. 'Work', 'Personal', 'Home'."
           />
           <div className="flex justify-end">
-            <Button disabled={false}>Create</Button>
+            <Button disabled={isPending}>Create</Button>
           </div>
         </form>
       </DialogContent>
