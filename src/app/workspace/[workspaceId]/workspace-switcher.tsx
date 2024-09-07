@@ -19,9 +19,13 @@ export const WorkspaceSwitcher = () => {
   const router = useRouter();
 
   const { data: workspaces, isLoading: workspacesLoading } = useGetWorkspaces();
-  const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: workspaceId });
+  const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({
+    id: workspaceId,
+  });
 
-  const filteredWorkspaces = workspaces?.filter((workspace) => workspace?._id !== workspaceId);
+  const filteredWorkspaces = workspaces?.filter(
+    (workspace) => workspace?._id !== workspaceId
+  );
 
   return (
     <DropdownMenu>
@@ -40,7 +44,9 @@ export const WorkspaceSwitcher = () => {
           className="flex-col justify-start items-start capitalize"
         >
           {workspace?.name}
-          <span className="text-xs text-muted-foreground">Active workspace</span>
+          <span className="text-xs text-muted-foreground">
+            Active workspace
+          </span>
         </DropdownMenuItem>
         {filteredWorkspaces?.map((workspace) => (
           <DropdownMenuItem
@@ -51,7 +57,7 @@ export const WorkspaceSwitcher = () => {
             <div className="size-9 relative overflow-hidden bg-[#616061] text-white font-semibold text-lg rounded-md flex items-center justify-center mr-2">
               {workspace.name.charAt(0).toUpperCase()}
             </div>
-            {workspace.name}
+            <p className="truncate">{workspace.name}</p>
           </DropdownMenuItem>
         ))}
         <DropdownMenuItem onClick={() => setOpen(true)}>
