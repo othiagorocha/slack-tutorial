@@ -9,13 +9,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Doc } from "../../../../convex/_generated/dataModel";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ListFilter, SquarePen } from "lucide-react";
+import { Hint } from "@/components/hint";
 
 interface WorkspaceHeaderProps {
   workspace: Doc<"workspaces">;
+  isAdmin: boolean;
 }
 
-export const WorkspaceHeader = ({ workspace }: WorkspaceHeaderProps) => {
+export const WorkspaceHeader = ({
+  workspace,
+  isAdmin,
+}: WorkspaceHeaderProps) => {
   return (
     <div className="flex items-center justify-between px-4 h-[49px] gap-0.5">
       <DropdownMenu>
@@ -39,16 +44,32 @@ export const WorkspaceHeader = ({ workspace }: WorkspaceHeaderProps) => {
               <p className="text-xs text-muted-foreground">Active workspace</p>
             </div>
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem className="py-2" onClick={() => {}}>
-            Invite people to {workspace.name}
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem className="py-2" onClick={() => {}}>
-            Preferences
-          </DropdownMenuItem>
+          {isAdmin && (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="py-2" onClick={() => {}}>
+                Invite people to {workspace.name}
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="py-2" onClick={() => {}}>
+                Preferences
+              </DropdownMenuItem>
+            </>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
+      <div className="flex items-center gap-0.5">
+        <Hint label="Filter conversations" side="bottom">
+          <Button variant={"transparent"} size={"iconSm"}>
+            <ListFilter className="size-4" />
+          </Button>
+        </Hint>
+        <Hint label="New message" side="bottom">
+          <Button variant={"transparent"} size={"iconSm"}>
+            <SquarePen className="size-4" />
+          </Button>
+        </Hint>
+      </div>
     </div>
   );
 };
