@@ -48,7 +48,12 @@ export const WorkspaceHeader = ({
             <>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="py-2" onClick={() => {}}>
-                Invite people to {workspace.name}
+                <p
+                  className="truncate"
+                  title={`invite people to ${workspace.name}`}
+                >
+                  Invite people to {workspace.name}
+                </p>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="py-2" onClick={() => {}}>
