@@ -21,7 +21,7 @@ export const SidebarButton: React.FC<SidebarButtonProps> = ({
         variant={"transparent"}
         className={cn(
           "size-9 p-2 group-hover:bg-accent/20",
-          isActive && "bg-accent/20"
+          isActive && "bg-accent/20",
         )}
       >
         <Icon className="size-5 text-white group-hover:scale-110 transition-all" />
