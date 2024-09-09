@@ -12,20 +12,20 @@ import { Doc } from "../../../../convex/_generated/dataModel";
 import { ChevronDown, ListFilter, SquarePen } from "lucide-react";
 import { Hint } from "@/components/hint";
 import { PreferencesModal } from "./preferences-modal";
+import { InviteModal } from "./invite-modal";
 
 interface WorkspaceHeaderProps {
   workspace: Doc<"workspaces">;
   isAdmin: boolean;
 }
 
-export const WorkspaceHeader = ({
-  workspace,
-  isAdmin,
-}: WorkspaceHeaderProps) => {
+export const WorkspaceHeader = ({ workspace, isAdmin }: WorkspaceHeaderProps) => {
+  const [inviteOpen, setInviteOpen] = useState(false);
   const [preferencesOpen, setPreferencesOpen] = useState(false);
 
   return (
     <>
+      <InviteModal open={inviteOpen} setOpen={setInviteOpen} />
       <PreferencesModal
         open={preferencesOpen}
         setOpen={setPreferencesOpen}
@@ -37,8 +37,7 @@ export const WorkspaceHeader = ({
             <Button
               variant={"transparent"}
               className="font-semibold text-lg w-auto p-1.5 overflow-hidden"
-              size={"sm"}
-            >
+              size={"sm"}>
               <span className="truncate">{workspace.name}</span>
               <ChevronDown className="size-4 ml-1 shrink-0" />
             </Button>
@@ -50,27 +49,19 @@ export const WorkspaceHeader = ({
               </div>
               <div className="flex flex-col items-start">
                 <p className="font-bold">{workspace.name}</p>
-                <p className="text-xs text-muted-foreground">
-                  Active workspace
-                </p>
+                <p className="text-xs text-muted-foreground">Active workspace</p>
               </div>
             </DropdownMenuItem>
             {isAdmin && (
               <>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="py-2" onClick={() => {}}>
-                  <p
-                    className="truncate"
-                    title={`invite people to ${workspace.name}`}
-                  >
+                <DropdownMenuItem className="py-2" onClick={() => setInviteOpen(true)}>
+                  <p className="truncate" title={`invite people to ${workspace.name}`}>
                     Invite people to {workspace.name}
                   </p>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className="py-2"
-                  onClick={() => setPreferencesOpen(true)}
-                >
+                <DropdownMenuItem className="py-2" onClick={() => setPreferencesOpen(true)}>
                   Preferences
                 </DropdownMenuItem>
               </>
