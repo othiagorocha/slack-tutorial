@@ -11,6 +11,7 @@ import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { SidebarItem } from "./sidebar-item";
 import { WorkspaceHeader } from "./workspace-header";
 import { WorkspaceSection } from "./workspace-section";
+import { UserItem } from "./user-item";
 
 export const WorkspaceSidebar = () => {
   const workspaceId = useWorkspaceId();
@@ -49,7 +50,11 @@ export const WorkspaceSidebar = () => {
           <SidebarItem key={item._id} icon={HashIcon} label={item.name} id={item._id} />
         ))}
       </WorkspaceSection>
-      {members?.map((item) => <div key={item._id}>{item.user.name}</div>)}
+      <WorkspaceSection label="Direct Messages" hint="New direct message" onNew={() => {}}>
+        {members?.map((item) => (
+          <UserItem key={item._id} id={member._id} label={item.user.name} image={item.user.image} />
+        ))}
+      </WorkspaceSection>
     </div>
   );
 };
