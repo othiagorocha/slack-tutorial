@@ -37,13 +37,13 @@ export const WorkspaceSidebar = () => {
       <WorkspaceHeader workspace={workspace} isAdmin={member.role === "admin"} />
       <div className="flex flex-col px-2 mt-3">
         <SidebarItem label="Threads" icon={MessageSquareText} id="threads" />
-        <SidebarItem label="Drafts & Sent" icon={SendHorizonal} id="drafts" />
-        <WorkspaceSection label="Channels" hint="New channel" onNew={() => {}}>
-          {channels?.map((item) => (
-            <SidebarItem key={item._id} icon={HashIcon} label={item.name} id={item._id} />
-          ))}
-        </WorkspaceSection>
+        <SidebarItem label="Drafts & Sent" icon={SendHorizonal} id="drafts" />{" "}
       </div>
+      <WorkspaceSection label="Channels" hint="New channel" onNew={() => {}}>
+        {channels?.map((item) => (
+          <SidebarItem key={item._id} icon={HashIcon} label={item.name} id={item._id} />
+        ))}
+      </WorkspaceSection>
     </div>
   );
 };
