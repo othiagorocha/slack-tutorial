@@ -12,3 +12,18 @@ de casa ->
     "prettier.printWidth": 105,
     "editor.wordWrapColumn": 105
   },
+
+modificar jsxSingleQuote ->
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.bracketSameLine": true,
+    "prettier.htmlWhitespaceSensitivity": "ignore",
+    "prettier.jsxSingleQuote": false,
+    "editor.rulers": [
+      95,
+      105,
+      120
+    ],
+    "prettier.printWidth": 105,
+    "editor.wordWrapColumn": 105
+  },
