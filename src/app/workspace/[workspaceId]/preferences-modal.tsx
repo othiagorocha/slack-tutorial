@@ -119,8 +119,7 @@ export const PreferencesModal = ({ open, setOpen, initialValue }: PreferencesMod
             <button
               disabled={isRemovingWorkspace}
               onClick={handleRemove}
-              className="flex items-center gap-x-2 px-5 py-4 bg-white rounded-lg cursor-pointer hover:bg-gray-50 text-rose-600"
-            >
+              className="flex items-center gap-x-2 px-5 py-4 bg-white rounded-lg cursor-pointer hover:bg-gray-50 text-rose-600">
               <TrashIcon className="size-4" />
               <p className="text-sm font-semibold">Delete workspace</p>
             </button>

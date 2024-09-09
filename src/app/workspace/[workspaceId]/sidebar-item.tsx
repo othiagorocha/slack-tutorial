@@ -34,8 +34,8 @@ export const SidebarItem: FC<SidebarItemProps> = ({ label, id, icon: Icon, varia
   return (
     <Button variant={"transparent"} size={"sm"} className={cn(sidebarItemVariants({ variant }))} asChild>
       <Link href={`workspace/${workspaceId}/channel/${id}`} className={`text-white`}>
-        <Icon className='size-3.5 mr-1 shrink-0' />
-        <span className='text-sm truncate'>{label}</span>
+        <Icon className="size-3.5 mr-1 shrink-0" />
+        <span className="text-sm truncate">{label}</span>
       </Link>
     </Button>
   );
