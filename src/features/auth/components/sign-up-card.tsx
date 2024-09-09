@@ -44,65 +44,64 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
   };
 
   return (
-    <Card className="size-full p-8">
-      <CardHeader className="px-0 pt-0">
+    <Card className='size-full p-8'>
+      <CardHeader className='px-0 pt-0'>
         <CardTitle>Sign up to continue</CardTitle>
         <CardDescription>Use your email or another service</CardDescription>
       </CardHeader>
       {!!error && (
-        <div className="bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6">
-          <TriangleAlert className="size-4" />
+        <div className='bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6'>
+          <TriangleAlert className='size-4' />
           <p>{error}</p>
         </div>
       )}
-      <CardContent className="space-y-5 px-0 pb-0">
-        <form onSubmit={onPasswordSignUp} className="space-y-2.5">
+      <CardContent className='space-y-5 px-0 pb-0'>
+        <form onSubmit={onPasswordSignUp} className='space-y-2.5'>
           <Input
             disabled={pending}
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Full name"
-            type="text"
+            placeholder='Full name'
+            type='text'
             required
           />
           <Input
             disabled={pending}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            type="email"
+            placeholder='Email'
+            type='email'
             required
           />
           <Input
             disabled={pending}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            type="password"
+            placeholder='Password'
+            type='password'
             required
           />
           <Input
             disabled={pending}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Confirm password"
-            type="password"
+            placeholder='Confirm password'
+            type='password'
             required
           />
-          <Button type="submit" className="w-full" size={"lg"} disabled={pending}>
+          <Button type='submit' className='w-full' size={"lg"} disabled={pending}>
             Continue
           </Button>
         </form>
         <Separator />
-        <div className="flex flex-col gap-y-2.5">
+        <div className='flex flex-col gap-y-2.5'>
           <Button
             disabled={pending}
             onClick={() => onProviderSignUp("google")}
             variant={"outline"}
             size={"lg"}
-            className="w-full relative"
-          >
-            <FcGoogle className="size-5 absolute top-2.5 left-2.5" />
+            className='w-full relative'>
+            <FcGoogle className='size-5 absolute top-2.5 left-2.5' />
             Continue with Google
           </Button>
           <Button
@@ -110,18 +109,16 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
             onClick={() => onProviderSignUp("github")}
             variant={"outline"}
             size={"lg"}
-            className="w-full relative"
-          >
-            <FaGithub className="size-5 absolute top-2.5 left-2.5" />
+            className='w-full relative'>
+            <FaGithub className='size-5 absolute top-2.5 left-2.5' />
             Continue with Github
           </Button>
         </div>
-        <p className="text-xs text-muted-foreground">
+        <p className='text-xs text-muted-foreground'>
           Already have an account?{" "}
           <span
             onClick={() => setState("signIn")}
-            className="text-sky-700 hover:underline cursor-pointer"
-          >
+            className='text-sky-700 hover:underline cursor-pointer'>
             Sign in
           </span>
         </p>
