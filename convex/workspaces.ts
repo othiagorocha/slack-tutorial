@@ -18,13 +18,10 @@ export const join = mutation({
   },
   handler: async (ctx, args) => {
     const userId = await getAuthUserId(ctx);
-
     if (!userId) throw new Error("Unauthorized");
 
     const workspace = await ctx.db.get(args.workspaceId);
-
     if (!workspace) throw new Error("Workspace not found");
-
     if (workspace.joinCode !== args.joinCode.toLocaleLowerCase())
       throw new Error("Invalid join code");
 
@@ -34,8 +31,8 @@ export const join = mutation({
         q.eq("workspaceId", args.workspaceId).eq("userId", userId)
       )
       .unique();
-
-    if (existingMember) throw new Error("Already a active member of this workspace");
+    if (existingMember)
+      throw new Error("Already a active member of this workspace");
 
     await ctx.db.insert("members", {
       userId,
