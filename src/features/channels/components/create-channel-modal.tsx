@@ -12,8 +12,11 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useCreateChannel } from "../api/use-create-channel";
 import { useWorkspaceId } from "@/hooks/use-workspace-id";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export const CreateChannelModal = () => {
+  const router = useRouter();
   const workspaceId = useWorkspaceId();
   const [open, setOpen] = useCreateChannelModal();
   const { mutate, isPending } = useCreateChannel();
@@ -35,8 +38,12 @@ export const CreateChannelModal = () => {
       { name, workspaceId },
       {
         onSuccess: (id) => {
-          // TODO: redirect to new channel
+          toast.success("Channel created");
+          router.push(`/workspace/${workspaceId}/channel/${id}`);
           handleClose();
+        },
+        onError: () => {
+          toast.error("Failed to create channel");
         },
       }
     );
@@ -44,11 +51,11 @@ export const CreateChannelModal = () => {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
           <DialogTitle>Add a channel</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className='space-y-4'>
           <Input
             value={name}
             disabled={isPending}
@@ -57,9 +64,9 @@ export const CreateChannelModal = () => {
             autoFocus
             minLength={3}
             maxLength={80}
-            placeholder="e.g. plan-budget"
+            placeholder='e.g. plan-budget'
           />
-          <div className="flex justify-end">
+          <div className='flex justify-end'>
             <Button disabled={isPending}>Create</Button>
           </div>
         </form>
